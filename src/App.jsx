@@ -2,9 +2,6 @@ import { useState } from 'react'
 import './App.css'
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import { MdDelete } from "react-icons/md";
-import { v4 as uuidv4 } from 'uuid';
-
 
 const TodoSchema = Yup.object().shape({
 	todo: Yup.string().required()
@@ -72,16 +69,13 @@ function App() {
 				</div>
 
 				<div className="basis-1/2 mt-5 mx-2 border rounded-lg p-2">
-					<div className='flex flex-row items-center'>
+					<ul>
 						{
-							!!tasks.length && tasks.map((task) => (
-								<>
-									<div className="basis-11/12 bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded my-2" key={uuidv4()} onClick={handleListItemClick}>{task}</div>
-									<MdDelete key={uuidv4()} className="basis-1/12 text-3xl text-red-500 hover:text-red-800 cursor-pointer ms-2" />
-								</>
+							!!tasks.length && tasks.map((task,i) => (
+								<li className='bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded my-2' key={i+task} onClick={handleListItemClick}>{task}</li>
 							))
 						}
-					</div>
+					</ul>
 				</div>
 			</div>
 		</div>
